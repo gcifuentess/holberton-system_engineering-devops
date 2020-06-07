@@ -28,7 +28,7 @@ At the end of this project, you are expected to be able to explain to anyone, wi
 
 ## Requirements
 
-## General
+### General
 
 ### Allowed editors: vi, vim, emacs
 
@@ -42,7 +42,7 @@ At the end of this project, you are expected to be able to explain to anyone, wi
 * You are not allowed to use sed or awk
 
 
-###More Info
+### More Info
 
 Read your /etc/passwd and /etc/shadow files.
 
