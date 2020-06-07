@@ -46,4 +46,4 @@ At the end of this project, you are expected to be able to explain to anyone, wi
 
 Read your /etc/passwd and /etc/shadow files.
 
-Note: You do not have to learn about fmt, pr, du, gzip, tar, lpr, sed and awk yet.Requirements
+Note: You do not have to learn about fmt, pr, du, gzip, tar, lpr, sed and awk yet.Requirements.
