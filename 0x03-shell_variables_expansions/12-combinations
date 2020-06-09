@@ -1,2 +1,2 @@
 #!/bin/bash
-
+echo -e {a..z}{a..n}\\n {a..n}o\\n {a..z}{p..z}\\n {p..z}o\\n | head -n-1
