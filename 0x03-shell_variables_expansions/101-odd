@@ -1,0 +1,2 @@
+#!/bin/bash
+grep --line-number . | grep [13579]: | cut --delimiter=":" --fields=2
