@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Displays the content of the file /etc/passwd.:
+# Only display:
+# Username
+# user id
+# Home directory path for the user
+
+LIST=$(cut -d ":" -f1,3,6 /etc/passwd)
+for user in $LIST
+do
+    echo "$user"
+done
