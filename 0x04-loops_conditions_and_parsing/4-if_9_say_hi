@@ -3,7 +3,7 @@
 
 LIMIT=10
 i=0
-SAYHI=9
+SAYHI=8
 while [ $i -lt $LIMIT ]
 do
     if [ $i -ne $SAYHI ]
