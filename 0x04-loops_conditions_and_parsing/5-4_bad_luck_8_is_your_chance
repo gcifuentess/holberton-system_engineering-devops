@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+#displays Holberton School 10 times.
+
+LIMIT=10
+i=0
+bad_luck=3
+good_luck=7
+while [ $i -lt $LIMIT ]
+do
+    if ((i !=  bad_luck && i != good_luck))
+    then
+	echo "Holberton School"
+    elif [ $i -eq $bad_luck ]
+    then
+	echo "bad luck"
+    else
+	echo "good luck"
+    fi
+    let "i+=1"
+done

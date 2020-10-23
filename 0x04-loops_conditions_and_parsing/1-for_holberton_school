@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+#displays Holberton School 10 times.
+
+LIMIT=10
+for ((i=0; i < LIMIT; i++))
+do
+    echo "Holberton School"
+done
