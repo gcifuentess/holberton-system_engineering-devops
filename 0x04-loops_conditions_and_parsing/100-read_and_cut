@@ -5,8 +5,8 @@
 # user id
 # Home directory path for the user
 
-LIST=$(cut -d ":" -f1,3,6 /etc/passwd)
-for user in $LIST
+exec 3< /etc/passwd
+while read -u 3
 do
-    echo "$user"
+    echo "$REPLY" | cut -d ":" -f1,3,6
 done
