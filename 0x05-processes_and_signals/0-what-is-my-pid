@@ -1,2 +1,3 @@
 #!/usr/bin/env bash
-echo $$
+"Prints its own process ID"
+echo $BASHPID
