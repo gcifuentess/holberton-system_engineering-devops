@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# A silly example of a first daemon
+
+MY_FILE=/tmp/my_process
+while true
+do
+    echo I am alive! >> $MY_FILE
+    sleep 2
+done
