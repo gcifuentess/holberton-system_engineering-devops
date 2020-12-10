@@ -10,12 +10,9 @@ exec { 'install_nginx':
     path    => '/usr/bin/',
 }
 
-file {'/var/www/html/index.html':
-    ensure  => 'file',
-    owner   => 'ubuntu',
-    group   => 'ubuntu',
-    content => "Holberton School\n",
-    mode    => '0644',
+exec { 'index.html':
+    command => 'echo Holberton School > /var/www/html/index.html',
+    path    => '/bin/'
 }
 
 exec { 'redirect':
@@ -23,7 +20,11 @@ exec { 'redirect':
     path    => '/bin/',
 }
 
-service { 'start_nginx':
-    ensure => 'running',
-    name   => 'nginx',
+exec {'start_nginx':
+    command => '/usr/sbin/service nginx start',
 }
+
+# service { 'start_nginx':
+#    ensure => 'running',
+#    name   => 'nginx',
+#}
