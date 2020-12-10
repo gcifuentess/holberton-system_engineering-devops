@@ -4,8 +4,8 @@ package { 'nginx':
   ensure => 'installed',
 }
 
-exec { 'index.html':
-  command => '/usr/bin/sudo /bin/echo Holberton School > /var/www/html/index.html',
+file { '/var/www/html/index.hmtl':
+  content => 'Holberton School',
 }
 
 file_line { '/etc/nginx/sites-available/default':
@@ -16,5 +16,6 @@ file_line { '/etc/nginx/sites-available/default':
 }
 
 service { 'nginx':
-  ensure => 'running',
+  ensure   => 'running',
+  requiere => Package['nginx'],
 }
