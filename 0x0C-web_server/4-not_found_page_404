@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Configure your Nginx server to have a custom 404 page
+
+my_string="a \\\trewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;\n\terror_page 404 /custom_404.html;\n\tlocation = /custom_404.html {\n\t\troot /var/www/html;\n\t\tinternal;\n\t}"
+
+apt-get update -y
+apt-get install nginx -y
+echo "Holberton School" > /var/www/html/index.html
+echo "Ceci n'est pas une page" > /var/www/html/custom_404.html
+sed -i "/server_name _;/$my_string" /etc/nginx/sites-available/default
+service nginx start
