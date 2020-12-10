@@ -14,7 +14,7 @@ file {'/var/www/html/index.html':
     ensure  => 'file',
     owner   => 'ubuntu',
     group   => 'ubuntu',
-    content => 'Holberton School',
+    content => "Holberton School\n",
     mode    => '0644',
 }
 
