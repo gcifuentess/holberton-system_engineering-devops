@@ -18,7 +18,7 @@ exec { 'index.html':
 exec { 'exec_3':
   require     => Exec['index.html'],
   environment => ['GG=google.com permanent'],
-  command     => 'sudo sed -i "s/server_name _;/server_name _;\n\trewrite ^\/redirect_me $GG;/" /etc/nginx/sites-enabled/default',
+  command     => 'sudo sed -i "s/server_name _;/server_name _;\n\trewrite ^\/redirect_me $GG;/" /etc/nginx/sites-available/default',
   path        => ['/usr/bin', '/bin'],
   returns     => [0,1]
 }
