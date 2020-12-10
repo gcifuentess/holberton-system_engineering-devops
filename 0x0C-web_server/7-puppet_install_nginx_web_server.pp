@@ -16,6 +16,11 @@ file_line { '/etc/nginx/sites-available/default':
   line   => 'rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;',
 }
 
+service { 'nginx_stop':
+  ensure  => 'stopped',
+  require => Package['nginx'],
+}
+
 service { 'nginx':
   ensure  => 'running',
   require => Package['nginx'],
