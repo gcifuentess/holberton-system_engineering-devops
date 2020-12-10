@@ -9,16 +9,11 @@ file { '/var/www/html/index.hmtl':
   content => 'Holberton School',
 }
 
-file_line { '/etc/nginx/sites-available/default':
+file_line { '/etc/nginx/sites-enabled/default':
   ensure => 'present',
-  path   => '/etc/nginx/sites-available/default',
+  path   => '/etc/nginx/sites-enabled/default',
   after  => 'server_name _',
   line   => 'rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;',
-}
-
-service { 'nginx_stop':
-  ensure  => 'stopped',
-  require => Package['nginx'],
 }
 
 service { 'nginx':
