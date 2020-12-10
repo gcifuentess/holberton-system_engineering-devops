@@ -1,28 +1,30 @@
 # install Nginx web server (w/ Puppet)
 
 exec { 'apt-get_update':
-    command => '/usr/bin/sudo /usr/bin/apt-get update -y',
-    before  => Exec['install_nginx'],
+  command => '/usr/bin/sudo /usr/bin/apt-get update -y',
+  before  => Package['nginx'],
 }
 
-exec { 'install_nginx':
-    command => '/usr/bin/sudo /usr/bin/apt-get install nginx -y',
-    before  => Exec['index.html'],
+package { 'nginx':
+  ensure  => 'installed',
+  name    => 'nginx',
+  require => Exec['apt-get_update'],
 }
 
-exec { 'index.html':
-    command => '/usr/bin/sudo /bin/echo Holberton School > /var/www/html/index.html',
-    before  => Exec['exec_3'],
+file { '/var/www/html/index.html':
+  content => "Holberton School\n",
+  require => Package['nginx'],
 }
 
-exec { 'exec_3':
-  before     => Exec['start_nginx'],
-  environment => ['GG=google.com permanent'],
-  command     => 'sudo sed -i "s/server_name _;/server_name _;\n\trewrite ^\/redirect_me $GG;/" /etc/nginx/sites-enabled/default',
-  path        => ['/usr/bin', '/bin'],
-  returns     => [0,1]
+file_line { '/etc/nginx/sites-available/default':
+  ensure  => 'present',
+  path    => '/etc/nginx/sites-available/default',
+  after   => 'server_name _',
+  line    => "\trewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;",
+  require => File['/var/www/html/index.html']
 }
 
-exec {'start_nginx':
-    command => '/usr/bin/sudo /usr/sbin/service nginx start',
+service { 'nginx':
+  ensure  => 'running',
+  require => File_line['/etc/nginx/sites-available/default'],
 }
