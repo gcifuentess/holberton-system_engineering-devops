@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# Install haproxy
+CONFIG="frontend load_balancer
+    bind *:80
+    mode http
+    default_backend gcifuentess
+
+backend gcifuentess
+    balance roundrobin
+    server web-01 34.74.168.137:80 check
+    server web-02 104.196.45.136:80 check"
+
+apt-get install --no-install-recommends software-properties-common -y
+add-apt-repository ppa:vbernat/haproxy-2.0 -y
+apt-get update -y
+apt-get install haproxy=2.0.\* -y
+echo "$CONFIG" >> /etc/haproxy/haproxy.cfg
+service haproxy restart
