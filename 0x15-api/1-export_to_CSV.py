@@ -15,7 +15,7 @@ if __name__ == "__main__":
     todos = r2.json()
     with open(employee_id + ".csv", 'w', newline='',
               encoding='utf-8') as f:
-        writer = csv.writer(f)
+        writer = csv.writer(f, quoting=csv.QUOTE_ALL)
         for todo in todos:
             fields = []
             fields.append(employee_id)
