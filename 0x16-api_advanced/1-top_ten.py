@@ -12,6 +12,6 @@ def top_ten(subreddit):
     # nb_subscribers = r.get('data', {}).get('subscribers', 0)
     r_data = r.get('data', None)
     if (r_data):
-        for i in range(9):
+        for i in range(10):
             hot_title = r_data['children'][i]['data']['title']
             print(hot_title)
