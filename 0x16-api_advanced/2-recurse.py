@@ -21,14 +21,12 @@ def recurse(subreddit, hot_list=[]):
         return None
     r = r.json()
     data = r['data']
-    try:
+    try:  # reads the ctl_dict, wich controls the recursion
         if type(hot_list[-1]) is dict:
             ctl_dict = hot_list[-1].copy()
-            del hot_list[-1]
-        else:
-            ctl_dict = {'counter': 0}
+            del hot_list[-1]  # deleltes de ctl_dict from the list
     except:
-        ctl_dict = {'counter': 0}
+        ctl_dict = {'counter': 0, 'after': None}  # creates de ctl_dict
     posts = data['children']
     nb_posts = len(posts)
     counter = ctl_dict['counter']
@@ -39,10 +37,10 @@ def recurse(subreddit, hot_list=[]):
         recurse(subreddit, hot_list)
     else:  # to start checking in the new page and free memory
         ctl_dict['counter'] = 0
-        ctl_dict['after'] = data.get('after', None)
+        ctl_dict['after'] = data.get('after', None)  # stores the next page
         hot_list.append(ctl_dict)
-        return hot_list
-    if ctl_dict['counter'] == 1:  # The recursion for the next page
-        recurse(subreddit, hot_list)
+    if ctl_dict['counter'] == 1:  # Checks if we are in the first called func
+        if hot_list[-1]['after']:  # Checks if there is a new page
+            recurse(subreddit, hot_list)  # The recursion for the next page
         del hot_list[-1]
     return hot_list
