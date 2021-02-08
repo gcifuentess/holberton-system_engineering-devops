@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://i.ibb.co/T4H3H09/Postmortem.jpg">
+</p>
+
 ## <span style="color:green">Summary:</span>
 
 For all GET requests apache server was returning a 500 error. The website consists of one HTML page so problem with MySQL or PHP was identified as probable cause.
